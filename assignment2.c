@@ -3,7 +3,7 @@
 * Name: Micaella Morales
 * Student ID: 916832064
 * Project: Assignment 2 - Echo Sensor - Tapeless Ruler
-* File: assignment1b.c
+* File: assignment2.c
 *
 * Description:
 *
