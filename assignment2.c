@@ -15,8 +15,8 @@
 #include <wiringPi.h>
 //#include <time.h> 
 
-#define trigPin 1
-#define echoPin 4
+#define trigPin 18
+#define echoPin 20
 #define SPEED_OF_SOUND 340
 
 void setup() {
