@@ -13,10 +13,10 @@
 
 #include <stdio.h>
 #include <wiringPi.h>
-//#include <time.h> 
+#include <time.h> 
 
-#define trigPin 18
-#define echoPin 20
+#define trigPin 21
+#define echoPin 22
 #define SPEED_OF_SOUND 340
 
 void setup() {
@@ -27,10 +27,9 @@ void setup() {
 
 double calculate_distance() {
     double distance;
-    unsigned int start, end, time_elapsed;
-    //clock_t start, end, time_elapsed;
+    clock_t start, end, time_elapsed;
 
-    printf("Calculating distance...")
+    printf("Calculating distance...");
     
     digitalWrite(trigPin, LOW);
     delay(1000);
@@ -39,26 +38,24 @@ double calculate_distance() {
     digitalWrite(trigPin, LOW);
 
     while(digitalRead(echoPin) == 0)
-        start = millis() / 1000;
-    //start = clock();
-
-    while(digitalRead(echoPin) == 1)
-        end = millis() / 1000;
-    //end = clock();
-
-    time_elapsed = end - start;
-    distance = (time_elapsed * SPEED_OF_SOUND) / 2;
+        start = clock();
     
-    return distance * 100;
+    while(digitalRead(echoPin) == 1) 
+        end = clock();
+    
+    time_elapsed = (double)(end-start);
+    distance = (time_elapsed * SPEED_OF_SOUND) / 2.0;
+    
+    return distance * 100 / CLOCKS_PER_SEC;
 }
 
 int main(void) {
     setup();
     double distance;
-
-    while(true) {
+    
+    while(1) {
         distance = calculate_distance();
-        printf("Distance: %d cm \n", distance);
+        printf("Distance: %f cm \n", distance);
     } 
     
     return 0;
