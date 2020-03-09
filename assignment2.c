@@ -33,7 +33,7 @@ double calculate_distance() {
     double distance;
     clock_t start, end, time_elapsed;
 
-    printf("Calculating distance...");
+    printf("Calculating distance...\n");
     
     digitalWrite(trigPin, LOW);
     delay(1000);
@@ -49,7 +49,7 @@ double calculate_distance() {
     while(digitalRead(echoPin) == 1) 
         end = clock();
     
-    time_elapsed = (double)(end-start);
+    time_elapsed = end - start;
     distance = (time_elapsed * SPEED_OF_SOUND) / 2.0;
     
     // returns distance in the unit of cm
