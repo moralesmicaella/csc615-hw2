@@ -7,8 +7,14 @@
 *
 * Description:
 * This file uses the WiringPi library to create a tapeless
-* ruler. An echo sensor (HC-SR04) was used to measure
-* the distance.
+* ruler. An echo sensor (HC-SR04), which has a transmitter
+* and receiver, was used to measure the distance.
+* Basically, the transmitter sends sound waves, which is
+* reflected back to the receiver once it encounters an obstacle.
+* The time it takes for the sound waves to get back to the
+* sensor is used to calculate the distance using the formula
+* s = vt/2, wherein v represents the speed of sound,
+* which is 340m/s.
 * To compile this file, enter make.
 * To run this file, enter ./assignment2
 ****************************************************************/
@@ -28,7 +34,7 @@ void setup() {
     pinMode(echoPin, INPUT);
 }
 
-// calculates the distance using the formula distance = (velocity*time)/2
+// returns the distance using the formula distance = (velocity*time)/2
 double calculate_distance() {
     double distance;
     clock_t start, end, time_elapsed;
